@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const { request, response } = require("express");
 const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
 
@@ -21,6 +22,15 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+
+// Get
+app.get("/", async (request, response) => {
+  try {
+    response.render("index.ejs");
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+  }
+});
 
 // Check env
 app.listen(process.env.PORT || PORT, () => {
