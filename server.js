@@ -22,7 +22,6 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-app.use(express.static(__dirname + "/public"));
 
 // Get
 app.get("/", async (request, response) => {
